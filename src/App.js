@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import ContextData from './Components/Context/ContextData';
+import Navbar from './Components/Navbar/Navbar';
+import Addtask from './Components/pages/Addtask';
+import Edittask from './Components/pages/Edittask';
+import Home from './Components/pages/Home';
+import ViewUser from './Components/pages/ViewUser';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+
+      <ContextData>
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route path="/viewuser/:id" exact component={ViewUser} />
+            <Route path="/edittask/:id" exact component={Edittask} />
+            <Route path="/addtask" exact component={Addtask} />
+            <Route path="/" exact component={Home} />
+          </Switch>
+        </Router>
+      </ContextData>
+
     </div>
   );
 }
